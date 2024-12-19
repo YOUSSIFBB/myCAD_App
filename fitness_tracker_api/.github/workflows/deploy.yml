@@ -1,0 +1,74 @@
+name: CI/CD Pipeline for Fitness Tracker API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from GitHub
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up SSH key
+      - name: Set up SSH Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > myKey.pem
+          chmod 600 myKey.pem
+
+      # Step 3: Test SSH connection
+      - name: Test SSH Connection
+        run: |
+          ssh -o StrictHostKeyChecking=no -i myKey.pem ubuntu@34.205.78.196 "echo Connected Successfully!"
+
+      # Step 4: Deploy to EC2 Instance
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i myKey.pem ubuntu@34.205.78.196 << 'EOF'
+            set -e
+            echo "Starting deployment on EC2 instance..."
+
+            # Update system packages
+            sudo apt-get update -y
+
+            # Install dependencies for Rails and Ruby
+            sudo apt-get install -y ruby-dev build-essential libssl-dev zlib1g-dev git
+
+            # Navigate to your application directory
+            cd ~/fitness_tracker_api
+
+            # Pull the latest changes
+            git pull origin main
+
+            # Remove existing bundle directory to fix permissions
+            rm -rf vendor/bundle
+
+            # Install Bundler
+            if ! command -v bundle &> /dev/null; then
+              echo "Installing Bundler..."
+              sudo gem install bundler --no-document
+            fi
+
+            # Install application dependencies
+            bundle install --jobs=4
+
+            # Run database migrations
+            bundle exec rails db:migrate
+
+            # Restart the Rails server (optional)
+            echo "Restarting Rails server..."
+            pkill -f puma || true
+            nohup bundle exec rails server -b 0.0.0.0 -p 3000 &
+
+            echo "Deployment completed successfully!"
+          EOF
+
+      # Step 5: Clean up
+      - name: Clean up
+        run: rm -f myKey.pem
