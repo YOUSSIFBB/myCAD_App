@@ -1,0 +1,179 @@
+body {
+    background-color: white;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* nav ba here styles*/
+.navbar {
+    padding: 1px;
+}
+
+.navbar .navLinks a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+
+/*background image alingment */
+.hero-section {
+    position: relative;
+    text-align: center;
+    color: white;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+    position: absolute;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/*set goals/ track porgress and stay motivated boxes sytles and padding */
+.feature-box {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.feature-box h3 {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.feature-box p {
+    color: grey;
+    margin-top: 10px;
+}
+
+
+/*goals ccs styleshere */
+.goals-container {
+    padding: 30px;
+    background-color: white;
+}
+
+.goals-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    text-decoration: underline;
+}
+
+/*bootstrap styles  */
+.goal-column {
+    width: 30%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+.goal-card {
+    border: none;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.goal-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.goal-card h3 {
+    font-size: 20px;
+    color: #34495e;
+}
+
+.goal-card p {
+    font-size: 14px;
+    color: grey;
+}
+
+.goal-card button {
+    margin: 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+.goal-card button:hover {
+    opacity: 0.9;
+}
+
+.goal-card button.delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
+
+.goal-card button.delete:hover {
+    background-color: #c0392b;
+}
+
+.goal-card button.move {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+}
+
+.goal-card button.move:hover {
+    background-color: #2471a3;
+}
+
+.goal-card button.edit {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+}
+
+.goal-card button.edit:hover {
+    background-color: #1e8449;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.form-container {
+    width: 300px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.goals-columns {
+    margin-top: 20px;
+}

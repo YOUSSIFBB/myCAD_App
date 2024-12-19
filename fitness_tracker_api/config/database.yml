@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: myuser     # Replace with your new PostgreSQL username
+  password: mypassword # Replace with the password you set
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: fitness_tracker_api_development
+
+test:
+  <<: *default
+  database: fitness_tracker_api_test
+
+production:
+  <<: *default
+  database: fitness_tracker_api_production
+  username: myuser
+  password: <%= ENV['DATABASE_PASSWORD'] %>
