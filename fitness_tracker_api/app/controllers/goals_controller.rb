@@ -7,7 +7,7 @@ class GoalsController < ApplicationController
     render json: goals
   end
 
-  # Create a new goal
+  #Create a new goal
   def create
     goal = Goal.new(goal_params)
     if goal.save
@@ -17,7 +17,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  # Update a goal
+  #Update a goal
   def update
     goal = Goal.find(params[:id])
     if goal.update(goal_params)
@@ -27,7 +27,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  # Delete a goal
+  #Delete a goal
   def destroy
     goal = Goal.find(params[:id])
     goal.destroy

@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Goals from './components/Goals'; // Ensure this path is correct
-import Home from './components/HomePage'; // Ensure this path is correct
-import StatsPage from './components/StatsPage'; // Ensure this path is correct
+import Goals from './components/Goals'; //goals file path
+import Home from './components/HomePage'; //home page file path
+import StatsPage from './components/StatsPage'; //stats page  file path
 
 function App() {
     return (
         <Router>
             <div className="App">
-                {/* Navigation Bar */}
+                {/*navigation Bar*/}
                 <nav style={styles.navbar}>
-                    <h2 style={styles.brand}>My Goals App</h2>
+                    <h2 style={styles.brand}>My Fitness Tracker</h2>
                     <ul style={styles.navLinks}>
                         <li>
                             <Link to="/" style={styles.link}>
@@ -30,7 +30,7 @@ function App() {
                     </ul>
                 </nav>
 
-                {/* Routes */}
+                {/*pages routes*/}
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/goals" element={<Goals />} />
@@ -41,7 +41,7 @@ function App() {
     );
 }
 
-// Inline styles for simplicity
+//css for nav bar (do not remove!)
 const styles = {
     navbar: {
         display: 'flex',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';  //libary improt
 import axios from 'axios';
 import {
     Chart as ChartJS,
@@ -11,6 +11,12 @@ import {
     Legend,
 } from 'chart.js';
 
+/*Refrerence: 
+ *https://www.youtube.com/watch?v=yOousFGfmZc
+ *https://www.stanleyulili.com/javascript/beginner-guide-to-chartjs
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+ */
+
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -21,23 +27,22 @@ function StatsPage() {
     });
 
     useEffect(() => {
-        // Fetch goals data from your API
+        //fetch goals from api
         const fetchGoals = async () => {
             try {
                 const response = await axios.get('http://127.0.0.1:3000/goals');
                 const goals = response.data;
 
-                // Filter completed goals
+                //filter goals
                 const completedGoals = goals.filter(goal => goal.status === 'Complete');
 
-                // Group calories burned by month
+                //group the saved calories burned by month
                 const caloriesByMonth = completedGoals.reduce((acc, goal) => {
                     const month = new Date(goal.end_date).toLocaleString('default', { month: 'long' });
                     acc[month] = (acc[month] || 0) + goal.calories;
                     return acc;
                 }, {});
 
-                // Prepare chart data
                 const labels = Object.keys(caloriesByMonth);
                 const data = Object.values(caloriesByMonth);
 
@@ -74,7 +79,7 @@ function StatsPage() {
 
     return (
         <div style={{ width: '80%', margin: '50px auto' }}>
-            <h2>Statistics Page</h2>
+            <h2>Your Monthly progress</h2>
             <Bar data={chartData} options={options} />
         </div>
     );
